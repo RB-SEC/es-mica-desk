@@ -193,28 +193,14 @@ a:hover { color: var(--accent-deep); }
 
 .li-btn svg { width: 1rem; height: 1rem; fill: currentColor; }
 
-.spark {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.28rem;
-  height: 3.2rem;
-  margin: 0.35rem 0 0.15rem;
-  padding: 0 0.1rem;
+.mini-compare {
+  margin: 0.25rem 0 0.15rem;
 }
 
-.spark span {
-  flex: 1;
-  border-radius: 0.2rem 0.2rem 0 0;
-  background: #d9d9d9;
-  height: var(--h, 40%);
-  transform-origin: bottom;
-  transform: scaleY(0.15);
-  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+.mini-compare .bar-row {
+  grid-template-columns: 4.2rem 1fr 4.5rem;
+  font-size: 0.8rem;
 }
-
-.spark span.on { background: var(--accent); }
-
-.spark.show span { transform: scaleY(1); }
 
 .site-footer {
   border-top: 1px solid var(--line);
@@ -330,7 +316,5 @@ table.data th {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .spark span,
   .bar-fill { transition: none; }
-  .spark span { transform: scaleY(1); }
 }

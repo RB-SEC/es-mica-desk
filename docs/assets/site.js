@@ -9,28 +9,23 @@
     });
   }
 
-  function revealSpark(el) {
-    if (reduce) el.classList.add("show");
-    else requestAnimationFrame(function () { el.classList.add("show"); });
-  }
-
   var io = reduce
     ? null
     : new IntersectionObserver(
         function (entries) {
           entries.forEach(function (e) {
             if (!e.isIntersecting) return;
-            if (e.target.classList.contains("chart")) revealBars(e.target);
-            if (e.target.classList.contains("spark")) revealSpark(e.target);
+            if (e.target.classList.contains("chart") || e.target.classList.contains("mini-compare")) {
+              revealBars(e.target);
+            }
             io.unobserve(e.target);
           });
         },
         { threshold: 0.35 }
       );
 
-  document.querySelectorAll(".chart, .spark").forEach(function (el) {
+  document.querySelectorAll(".chart, .mini-compare").forEach(function (el) {
     if (io) io.observe(el);
-    else if (el.classList.contains("chart")) revealBars(el);
-    else revealSpark(el);
+    else revealBars(el);
   });
 })();
