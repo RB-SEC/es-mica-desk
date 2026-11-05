@@ -138,7 +138,7 @@
   <main class="wrap">
     <div class="meta">
       <span class="tag hot">ES MiCA Desk</span>
-      <span class="tag">v0.1 · corte 05/11/2026</span>
+      <span class="tag">v0.2 · corte 05/11/2026</span>
       <span class="tag">ruff32</span>
     </div>
     <h1 class="brand">ES MiCA Desk</h1>
@@ -250,22 +250,26 @@
       <h3>3B · Después de comprar: mover en L2</h3>
       <div class="callout">
         Esto <strong>no es una ruta de compra</strong>. Solo aplica cuando ya tienes USDC/EURC
-        en self-custody. No sustituye Wallet ni Pro.
+        en self-custody. No sustituye Wallet ni Pro. En Base el coste all-in = ejecución L2 +
+        <strong>data fee L1</strong> (publicar calldata en Ethereum).
       </div>
       <p class="note">
-        Medición 05/11/2026 · Base RPC <code>eth_gasPrice</code> + <code>eth_estimateGas</code>
-        de un <code>transfer</code> USDC (contrato <code>0x833589fC…</code>) ·
-        ETH/EUR Coinbase spot.
-        Resultado: gasPrice 0,006 gwei · gas 45.439 · coste <strong>€0,00059</strong> (≈ €0,0006).
-        Query Dune de contraste (gas Base 24h): perfil <a href="https://dune.com/ruff32">ruff32</a>
-        · archivo <code>queries/F1-gas_base_usdc_transfer.sql</code>.
+        Medición 05/11/2026 · 25 receipts reales de <code>Transfer</code> USDC en Base
+        (gasUsed 35k–120k) vía <code>mainnet.base.org</code> · campo <code>l1Fee</code> +
+        L2 (<code>gasUsed × effectiveGasPrice</code>) · ETH/EUR Coinbase.
+        Mediana all-in <strong>€0,0012</strong> (L2 ≈ €0,00124 · L1 data fee ≈ €0,000001).
+        Hoy el L1 fee es mínimo (blobs); igual se publica separado para no subestimar.
+        Ejemplo tx: <a href="https://basescan.org/tx/0x46e8b28037ab668fa05a9f327e38d0bdf3110ff4ea321d9697886250a42d33fd">0x46e8…</a>.
+        Contraste SQL: <a href="https://dune.com/ruff32">ruff32</a> · <code>queries/F1-gas_base_usdc_transfer.sql</code>.
       </p>
       <table>
         <thead>
-          <tr><th>Operación</th><th>Red</th><th>Coste medido</th><th>Momento</th></tr>
+          <tr><th>Componente</th><th>Red</th><th>Mediana</th><th>Momento</th></tr>
         </thead>
         <tbody>
-          <tr><td>USDC ERC-20 transfer</td><td>Base</td><td>€0,0006</td><td>05/11/2026</td></tr>
+          <tr><td>Ejecución L2</td><td>Base</td><td>€0,00124</td><td>05/11/2026</td></tr>
+          <tr><td>Data fee L1</td><td>Ethereum (vía Base)</td><td>€0,000001</td><td>05/11/2026</td></tr>
+          <tr><td><strong>All-in USDC transfer</strong></td><td>Base</td><td><strong>€0,0012</strong></td><td>05/11/2026</td></tr>
         </tbody>
       </table>
 
@@ -273,9 +277,9 @@
         <h3>Frase de la semana</h3>
         <p>
           El cuello de botella del retail ES no es el gas. Comprar 100–1.000 € en Wallet Bit2Me
-          (fee+spread ≈2,15%) cuesta órdenes de magnitud más que operar en Pro (0,01% en stable/EUR)
-          o que mover ya comprado en Base (~€0,0006). La transferencia L2 no te ahorra la compra:
-          solo el rail posterior.
+          (fee+spread ≈2,15%) cuesta órdenes de magnitud más que Pro (0,01% en stable/EUR)
+          o que mover ya comprado en Base (~€0,0012 all-in, L2+L1). La transferencia L2 no te
+          ahorra la compra: solo el rail posterior.
         </p>
       </div>
     </section>
@@ -286,8 +290,8 @@
       <a href="https://api.circle.com/v1/stablecoins">Circle Stablecoins API</a> ·
       <a href="https://support.bit2me.com/en/support/solutions/articles/35000258262">Bit2Me Wallet fees</a> ·
       <a href="https://support.bit2me.com/en/support/solutions/articles/35000172197-bit2me-pro-fees-and-limits">Bit2Me Pro fees</a> ·
-      Base RPC + Coinbase ETH-EUR.<br />
-      Open Bank y Cecabank: 24/07/2025 confirmado en PDF oficial. Sin cobro / sin USDC hasta abogado.
+      Base receipts (<code>l1Fee</code>) + Coinbase ETH-EUR.<br />
+      Open Bank y Cecabank: 24/07/2025 confirmado en PDF oficial.
     </footer>
   </main>
   <script>

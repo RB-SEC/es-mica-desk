@@ -5,7 +5,7 @@
 | CASP ES | [PDF CNMV PSC](https://www.cnmv.es/Docportal/Proveedores-Servicios-Criptoactivos/Listado_ProveedoresCriptoactivos.pdf) (copia local `data/cnmv-psc.pdf`) | 05/11/2026 | Off-chain oficial |
 | EURC supply | [Circle API](https://api.circle.com/v1/stablecoins) | 05/11/2026 | Issuer on-chain aggregate |
 | Wallet / Pro fees | [Wallet](https://support.bit2me.com/en/support/solutions/articles/35000258262) · [Pro](https://support.bit2me.com/en/support/solutions/articles/35000172197-bit2me-pro-fees-and-limits) | 05/11/2026 | Tarifa pública |
-| Gas L2 USDC Base | RPC `base.publicnode.com` eth_gasPrice + eth_estimateGas · ETH/EUR Coinbase | 05/11/2026 | Medido · `data/gas-base-usdc-2026-11-05.json` |
+| Gas Base USDC all-in | 25 receipts Base (`l1Fee` + L2) · ETH/EUR Coinbase | 05/11/2026 | Medido · mediana €0,0012 · `data/gas-base-usdc-2026-11-05.json` |
 
 ## Comparaciones válidas
 

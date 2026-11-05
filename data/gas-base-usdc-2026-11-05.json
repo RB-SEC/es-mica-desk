@@ -1,14 +1,15 @@
 {
   "as_of": "2026-11-05",
   "network": "base",
-  "method": "eth_gasPrice + eth_estimateGas(USDC.transfer)",
-  "rpc": "https://base.publicnode.com",
+  "method": "25 recent USDC Transfer receipts via mainnet.base.org; L2=gasUsed*effectiveGasPrice; L1=receipt.l1Fee; ETH/EUR Coinbase spot",
   "usdc_contract": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-  "gas_price_wei": 6000000,
-  "gas_price_gwei": 0.006,
-  "gas_units_estimate": 45439,
-  "eth_eur_coinbase": 2153.655,
-  "cost_eur": 0.000587,
-  "cost_eur_rounded": 0.0006,
-  "note": "Post-purchase move only. Not a buy route. Dune SQL contrast in queries/F1-gas_base_usdc_transfer.sql"
+  "eth_eur_coinbase": 2146.31,
+  "n_samples": 25,
+  "gas_used_filter": "35000-120000",
+  "median_l2_eur": 0.001241,
+  "median_l1_data_fee_eur": 0.00000123,
+  "median_all_in_eur": 0.001243,
+  "all_in_rounded_eur": 0.0012,
+  "note": "Post-purchase move only. Includes L1 data fee. On this snapshot L1 fee is tiny vs L2 (blob era); still reported separately.",
+  "example_tx": "0x46e8b28037ab668fa05a9f327e38d0bdf3110ff4ea321d9697886250a42d33fd"
 }
