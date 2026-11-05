@@ -3,313 +3,146 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ES MiCA Desk — v0.1</title>
+  <title>ES MiCA Desk — el retail no se come el gas</title>
+  <meta name="description" content="Corte 05/11/2026: fee+spread de Bit2Me Wallet frente a Pro y Base. Fuentes fechadas." />
+  <link rel="canonical" href="https://rb-sec.github.io/es-mica-desk/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="ES MiCA Desk" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:url" content="https://rb-sec.github.io/es-mica-desk/" />
+  <meta property="og:title" content="El cuello de botella del retail no es el gas" />
+  <meta property="og:description" content="Wallet Bit2Me ≈2,15% frente a Pro 0,01% y Base all-in ≈€0,0012. Corte 05/11/2026 con fuentes fechadas." />
+  <meta property="og:image" content="https://rb-sec.github.io/es-mica-desk/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="El cuello de botella del retail no es el gas" />
+  <meta name="twitter:description" content="Wallet ≈2,15% frente a Pro y Base. Corte ES MiCA Desk 05/11/2026." />
+  <meta name="twitter:image" content="https://rb-sec.github.io/es-mica-desk/assets/og.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --ink: #0e1412;
-      --paper: #f3efe6;
-      --panel: #ebe4d6;
-      --line: #c9bfae;
-      --mute: #5c655f;
-      --accent: #c45c26;
-      --ok: #1f5c45;
-    }
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: "IBM Plex Sans", system-ui, sans-serif;
-      line-height: 1.45;
-    }
-    .wrap { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
-    .brand {
-      font-family: Fraunces, Georgia, serif;
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin: 0 0 0.5rem;
-    }
-    .lede { color: var(--mute); max-width: 40rem; margin: 0 0 1.5rem; }
-    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
-    .tag {
-      border: 1px solid var(--line);
-      padding: 0.2rem 0.55rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--mute);
-    }
-    .tag.hot { border-color: var(--accent); color: var(--accent); }
-    .warn {
-      border-left: 3px solid var(--accent);
-      background: #f7e8dc;
-      padding: 0.9rem 1rem;
-      margin: 0 0 2rem;
-      font-size: 0.95rem;
-    }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      margin-bottom: 2.5rem;
-    }
-    .stat { background: var(--panel); padding: 1.1rem 1rem; }
-    .stat b {
-      display: block;
-      font-family: Fraunces, Georgia, serif;
-      font-size: 1.85rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -0.02em;
-    }
-    .stat span { color: var(--mute); font-size: 0.85rem; }
-    .src {
-      display: block;
-      margin-top: 0.35rem;
-      font-size: 0.72rem;
-      color: var(--mute);
-    }
-    .src a { color: var(--ok); }
-    h2 {
-      font-family: Fraunces, Georgia, serif;
-      font-size: 1.45rem;
-      margin: 0 0 0.35rem;
-      font-weight: 700;
-    }
-    h3 {
-      font-family: Fraunces, Georgia, serif;
-      font-size: 1.1rem;
-      margin: 1.4rem 0 0.45rem;
-      font-weight: 700;
-    }
-    .sec { margin-bottom: 2.4rem; }
-    .sec p.note { color: var(--mute); font-size: 0.9rem; margin: 0 0 1rem; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    th, td {
-      text-align: left;
-      padding: 0.55rem 0.4rem;
-      border-bottom: 1px solid var(--line);
-      vertical-align: top;
-    }
-    th { color: var(--mute); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
-    tr.bit2me td { color: var(--ok); font-weight: 500; }
-    .bars { display: grid; gap: 0.55rem; margin: 1rem 0 1.25rem; }
-    .bar-row { display: grid; grid-template-columns: 6.5rem 1fr 4.2rem; gap: 0.6rem; align-items: center; font-size: 0.85rem; }
-    .bar-track { height: 0.55rem; background: #ddd4c4; }
-    .bar-fill { height: 100%; background: var(--ink); }
-    .bar-fill.accent { background: var(--accent); }
-    .read {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 1.4rem 1.3rem;
-      margin-top: 1rem;
-    }
-    .read h3 {
-      font-family: Fraunces, Georgia, serif;
-      margin: 0 0 0.55rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--paper);
-    }
-    .read p { margin: 0; color: #d9d2c4; }
-    .callout {
-      border: 1px solid var(--line);
-      background: #f7f3ea;
-      padding: 0.85rem 1rem;
-      margin: 0.75rem 0 1.1rem;
-      font-size: 0.9rem;
-    }
-    footer { margin-top: 2.5rem; color: var(--mute); font-size: 0.8rem; border-top: 1px solid var(--line); padding-top: 1rem; }
-    footer a { color: var(--ok); }
-    @media (max-width: 700px) {
-      .stats { grid-template-columns: 1fr; }
-      .bar-row { grid-template-columns: 5rem 1fr 3.5rem; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
-  <main class="wrap">
-    <div class="meta">
-      <span class="tag hot">ES MiCA Desk</span>
-      <span class="tag">v0.2 · corte 05/11/2026</span>
-      <span class="tag">ruff32</span>
+  <header class="site-header">
+    <div class="inner">
+      <a class="logo" href="index.html" aria-label="ES MiCA Desk">
+        <img src="assets/logo.svg" alt="ES MiCA Desk" width="220" height="36" />
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="index.html" aria-current="page">Hoy</a>
+        <a href="metodologia.html">Metodología</a>
+        <a href="archivo.html">Archivo</a>
+        <a href="mailto:contactoscras@gmail.com?subject=Alta%20titular%20martes%20ES%20MiCA%20Desk">Titular</a>
+        <a href="mailto:contactoscras@gmail.com?subject=Propuesta%20%2F%20duda%20ES%20MiCA%20Desk">Escribir</a>
+      </nav>
     </div>
-    <h1 class="brand">ES MiCA Desk</h1>
+  </header>
+
+  <main class="wrap">
+    <p class="kicker">Corte · 05/11/2026 · España ↔ crypto</p>
+    <h1>El cuello de botella del retail no es el gas</h1>
     <p class="lede">
-      El corredor regulado España ↔ crypto: quién puede prestar servicio (CNMV),
-      qué rail EUR on-chain está vivo (EURC / Circle), y cuánto cuesta comprar en
-      Bit2Me frente a mover ya comprado en L2.
+      Comprar en Bit2Me Wallet cuesta órdenes de magnitud más que operar en Pro
+      o mover crypto ya comprada en Base. El rail barato llega después de la compra.
     </p>
 
-    <div class="warn">
-      <strong>Qué NO medimos:</strong> retail español total · depósitos Bit2Me on-chain ·
-      “USDT→CEX = España” · SEPA (fuera de cadena). Una transferencia L2 no es una ruta de compra.
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <b>€453.3M</b>
-        <span>EURC supply total</span>
-        <span class="src">Circle API · 05/11/2026 · <a href="https://api.circle.com/v1/stablecoins">fuente</a></span>
-      </div>
-      <div class="stat">
-        <b>156:1</b>
-        <span>USDC : EURC (mismo emisor)</span>
-        <span class="src">Circle API · 05/11/2026</span>
-      </div>
-      <div class="stat">
-        <b>~2,15%</b>
-        <span>Wallet Bit2Me ida · Level 0</span>
-        <span class="src">Tarifa consultada 05/11/2026 · <a href="https://support.bit2me.com/en/support/solutions/articles/35000258262">soporte</a></span>
-      </div>
-    </div>
-
-    <section class="sec">
-      <h2>Capa 1 · CASP / entidades ES</h2>
-      <p class="note">
-        Fechas verificadas una a una contra el PDF oficial CNMV descargado el 05/11/2026
-        (<a href="https://www.cnmv.es/Docportal/Proveedores-Servicios-Criptoactivos/Listado_ProveedoresCriptoactivos.pdf">listado PSC</a>).
-        Columna “Desde” = fecha a partir de la cual puede prestar servicios MiCA.
-      </p>
-      <table>
-        <thead>
-          <tr><th>Entidad</th><th>Tipo</th><th>Desde (CNMV)</th><th>Foco</th></tr>
-        </thead>
-        <tbody>
-          <tr class="bit2me"><td>Bitcoinforme (Bit2Me)</td><td>PSC ES</td><td>31/10/2025</td><td>Custodia, canje, ejecución, transferencia</td></tr>
-          <tr><td>Criptan Trade</td><td>PSC ES</td><td>26/06/2026</td><td>Custodia, canje, transferencia</td></tr>
-          <tr><td>Minos Global</td><td>PSC ES</td><td>30/06/2026</td><td>Custodia, canje, ejecución, colocación</td></tr>
-          <tr><td>Crossmint Europe</td><td>PSC ES</td><td>26/06/2026</td><td>Custodia, canje fondos, transferencia</td></tr>
-          <tr><td>Prosegur Custodia Activos Digitales</td><td>PSC ES</td><td>30/06/2026</td><td>Custodia, RTO, transferencia</td></tr>
-          <tr><td>Prakma Markets</td><td>PSC ES</td><td>09/10/2026</td><td>Custodia, RTO, transferencia</td></tr>
-          <tr><td>Due Network</td><td>PSC ES</td><td>12/06/2026</td><td>Canje fondos / cripto</td></tr>
-          <tr><td>Basque Pay</td><td>PSC ES</td><td>31/07/2026</td><td>RTO</td></tr>
-          <tr><td>Fintech Payments PSC</td><td>PSC ES</td><td>31/07/2026</td><td>Canje fondos</td></tr>
-          <tr><td>Iqana Technologies</td><td>PSC ES</td><td>10/07/2026</td><td>Gestión de carteras</td></tr>
-          <tr><td>CaixaBank</td><td>Entidad crédito ES</td><td>27/03/2026</td><td>Custodia, ejecución, RTO, transferencia</td></tr>
-          <tr><td>Open Bank</td><td>Entidad crédito ES</td><td>24/07/2025 ✓</td><td>Custodia, ejecución</td></tr>
-          <tr><td>Cecabank</td><td>Entidad crédito ES</td><td>24/07/2025 ✓</td><td>Custodia, RTO, transferencia</td></tr>
-          <tr><td>Kutxabank</td><td>Entidad crédito ES</td><td>27/03/2026</td><td>Custodia, RTO, transferencia</td></tr>
-          <tr><td>Renta 4 Banco</td><td>Entidad crédito ES</td><td>21/11/2025</td><td>Custodia, RTO, transferencia</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="sec">
-      <h2>Capa 2 · Rail EURC</h2>
-      <p class="note">
-        Supply circulante por chain. Consulta 05/11/2026 ·
-        <a href="https://api.circle.com/v1/stablecoins">api.circle.com/v1/stablecoins</a>.
-        Lectura: euro tokenizado concentrado en Ethereum; Base es el L2 barato. No es “adopción española”.
-      </p>
-      <div class="bars" id="bars"></div>
-      <table>
-        <thead><tr><th>Chain</th><th>Supply</th><th>%</th></tr></thead>
-        <tbody>
-          <tr><td>Ethereum</td><td>€320.8M</td><td>70.8%</td></tr>
-          <tr><td>Solana</td><td>€64.1M</td><td>14.1%</td></tr>
-          <tr><td>Base</td><td>€52.7M</td><td>11.6%</td></tr>
-          <tr><td>Arc</td><td>€7.1M</td><td>1.6%</td></tr>
-          <tr><td>Stellar</td><td>€4.0M</td><td>0.9%</td></tr>
-          <tr><td>Avalanche</td><td>€3.7M</td><td>0.8%</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="sec">
-      <h2>Capa 3 · Coste del rail retail ES</h2>
-
-      <h3>3A · Rutas de compra (comparables)</h3>
-      <p class="note">
-        Misma pregunta: “¿cuánto me cuesta convertir EUR en crypto en Bit2Me?”
-        Tarifa Wallet consultada 05/11/2026:
-        <a href="https://support.bit2me.com/en/support/solutions/articles/35000258262">compras/ventas Wallet</a>
-        (0,95% + spread ≈1,20% → ≈2,15% ida en Level 0).
-        Pro stable/EUR:
-        <a href="https://support.bit2me.com/en/support/solutions/articles/35000172197-bit2me-pro-fees-and-limits">fees Pro</a>
-        (taker 0,01%). SEPA depósito: 0 € según soporte Bit2Me.
-      </p>
-      <table>
-        <thead>
-          <tr><th>Ticket</th><th>Wallet Bit2Me (ida, L0)</th><th>Pro USDC/EUR (taker)</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>100 €</td><td>≈ 2,15 €</td><td>≈ 0,01 €</td></tr>
-          <tr><td>500 €</td><td>≈ 10,75 €</td><td>≈ 0,05 €</td></tr>
-          <tr><td>1.000 €</td><td>≈ 21,50 €</td><td>≈ 0,10 €</td></tr>
-        </tbody>
-      </table>
-
-      <h3>3B · Después de comprar: mover en L2</h3>
-      <div class="callout">
-        Esto <strong>no es una ruta de compra</strong>. Solo aplica cuando ya tienes USDC/EURC
-        en self-custody. No sustituye Wallet ni Pro. En Base el coste all-in = ejecución L2 +
-        <strong>data fee L1</strong> (publicar calldata en Ethereum).
-      </div>
-      <p class="note">
-        Medición 05/11/2026 · 25 receipts reales de <code>Transfer</code> USDC en Base
-        (gasUsed 35k–120k) vía <code>mainnet.base.org</code> · campo <code>l1Fee</code> +
-        L2 (<code>gasUsed × effectiveGasPrice</code>) · ETH/EUR Coinbase.
-        Mediana all-in <strong>€0,0012</strong> (L2 ≈ €0,00124 · L1 data fee ≈ €0,000001).
-        Hoy el L1 fee es mínimo (blobs); igual se publica separado para no subestimar.
-        Ejemplo tx: <a href="https://basescan.org/tx/0x46e8b28037ab668fa05a9f327e38d0bdf3110ff4ea321d9697886250a42d33fd">0x46e8…</a>.
-        Contraste SQL: <a href="https://dune.com/ruff32">ruff32</a> · <code>queries/F1-gas_base_usdc_transfer.sql</code>.
-      </p>
-      <table>
-        <thead>
-          <tr><th>Componente</th><th>Red</th><th>Mediana</th><th>Momento</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Ejecución L2</td><td>Base</td><td>€0,00124</td><td>05/11/2026</td></tr>
-          <tr><td>Data fee L1</td><td>Ethereum (vía Base)</td><td>€0,000001</td><td>05/11/2026</td></tr>
-          <tr><td><strong>All-in USDC transfer</strong></td><td>Base</td><td><strong>€0,0012</strong></td><td>05/11/2026</td></tr>
-        </tbody>
-      </table>
-
-      <div class="read">
-        <h3>Frase de la semana</h3>
+    <article class="story">
+      <section class="block">
+        <h2>Por qué se midió</h2>
         <p>
-          El cuello de botella del retail ES no es el gas. Comprar 100–1.000 € en Wallet Bit2Me
-          (fee+spread ≈2,15%) cuesta órdenes de magnitud más que Pro (0,01% en stable/EUR)
-          o que mover ya comprado en Base (~€0,0012 all-in, L2+L1). La transferencia L2 no te
-          ahorra la compra: solo el rail posterior.
+          Tras MiCA, España tiene entidades autorizadas y un euro on-chain (EURC),
+          pero el retail sigue pagando el on-ramp. Cruzamos tarifas públicas de Bit2Me
+          con el supply de EURC y el coste real de un transfer en Base (L2 + data fee L1).
         </p>
-      </div>
-    </section>
+      </section>
 
-    <footer>
-      Fuentes con fecha 05/11/2026:
-      <a href="https://www.cnmv.es/Docportal/Proveedores-Servicios-Criptoactivos/Listado_ProveedoresCriptoactivos.pdf">CNMV PSC</a> ·
-      <a href="https://api.circle.com/v1/stablecoins">Circle Stablecoins API</a> ·
-      <a href="https://support.bit2me.com/en/support/solutions/articles/35000258262">Bit2Me Wallet fees</a> ·
-      <a href="https://support.bit2me.com/en/support/solutions/articles/35000172197-bit2me-pro-fees-and-limits">Bit2Me Pro fees</a> ·
-      Base receipts (<code>l1Fee</code>) + Coinbase ETH-EUR.<br />
-      Open Bank y Cecabank: 24/07/2025 confirmado en PDF oficial.
-    </footer>
+      <section class="block">
+        <h2>Tres cifras</h2>
+        <div class="stats">
+          <div class="stat">
+            <strong data-count="453.3" data-prefix="€" data-suffix="M" data-decimals="1">€0M</strong>
+            <span class="label">EURC en circulación</span>
+            <span class="src">Circle API · 05/11/2026 · <a href="https://api.circle.com/v1/stablecoins">fuente</a></span>
+          </div>
+          <div class="stat">
+            <strong data-count="2.15" data-suffix="%" data-decimals="2">0%</strong>
+            <span class="label">Wallet Bit2Me ida (Level 0)</span>
+            <span class="src">Tarifa 05/11/2026 · <a href="https://support.bit2me.com/en/support/solutions/articles/35000258262">soporte</a></span>
+          </div>
+          <div class="stat">
+            <strong data-count="0.0012" data-prefix="€" data-decimals="4">€0</strong>
+            <span class="label">Transfer USDC Base all-in</span>
+            <span class="src">25 receipts · L2+L1 · 05/11/2026</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Coste de comprar 100 €</h2>
+        <p class="note">Rutas de compra comparables. Base no es compra: es mover después.</p>
+        <div class="chart" aria-label="Comparativa de costes para 100 euros">
+          <div class="bar-row">
+            <span>Wallet</span>
+            <div class="bar-track"><div class="bar-fill" data-width="100"></div></div>
+            <span>≈ 2,15 €</span>
+          </div>
+          <div class="bar-row">
+            <span>Pro</span>
+            <div class="bar-track"><div class="bar-fill soft" data-width="0.5"></div></div>
+            <span>≈ 0,01 €</span>
+          </div>
+          <div class="bar-row">
+            <span>Base*</span>
+            <div class="bar-track"><div class="bar-fill soft" data-width="0.06"></div></div>
+            <span>≈ 0,001 €</span>
+          </div>
+        </div>
+        <p class="chart-caption">*Base = transfer post-compra (L2 + data fee L1). Escala relativa al Wallet.</p>
+      </section>
+
+      <section class="block">
+        <h2>Conclusión</h2>
+        <p>
+          El gas en L2 es irrelevante frente al fee y el spread del Wallet.
+          Quien entra por SEPA y opera en Pro en pares stable/EUR paga casi nada de trading.
+          Quien compra en Wallet paga el rail caro. EURC existe (~€453M) pero el dólar
+          del mismo emisor sigue ~156 veces más grande.
+        </p>
+      </section>
+
+      <section class="block">
+        <h2>A quién le importa</h2>
+        <ul class="audience">
+          <li><b>Usuario</b> Depositar por SEPA y usar Pro cambia el coste de la entrada.</li>
+          <li><b>CASP</b> La transparencia de fees es el dato que el retail puede contrastar.</li>
+          <li><b>Periodista</b> Hay entidades MiCA ES datadas; el volumen “español on-chain” no.</li>
+          <li><b>Inversor</b> El rail euro on-chain es real y todavía pequeño frente al dólar.</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Qué no cubre este corte</h2>
+        <div class="warn">
+          No medimos retail español total, depósitos Bit2Me on-chain ni “USDT→CEX = España”.
+          SEPA está fuera de la cadena. Una transferencia L2 no sustituye una compra.
+        </div>
+        <div class="actions">
+          <a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frb-sec.github.io%2Fes-mica-desk%2F" target="_blank" rel="noopener">Compartir en LinkedIn</a>
+          <a class="btn ghost" href="corte/2026-11-05.html">Ver tablas y fuentes</a>
+          <a class="btn ghost" href="metodologia.html">Metodología</a>
+        </div>
+      </section>
+    </article>
   </main>
-  <script>
-    const chains = [
-      { name: "Ethereum", pct: 70.8, accent: true },
-      { name: "Solana", pct: 14.1 },
-      { name: "Base", pct: 11.6, accent: true },
-      { name: "Arc", pct: 1.6 },
-      { name: "Stellar", pct: 0.9 },
-      { name: "Avalanche", pct: 0.8 },
-    ];
-    const root = document.getElementById("bars");
-    chains.forEach((c) => {
-      const row = document.createElement("div");
-      row.className = "bar-row";
-      row.innerHTML = `<span>${c.name}</span><div class="bar-track"><div class="bar-fill${c.accent ? " accent" : ""}" style="width:${c.pct}%"></div></div><span>${c.pct}%</span>`;
-      root.appendChild(row);
-    });
-  </script>
+
+  <footer class="site-footer">
+    <div class="inner">
+      ES MiCA Desk · desk.rbsec.skin · conversación en LinkedIn · propuestas por correo.
+      Sin base de datos de usuarios en este sitio.
+    </div>
+  </footer>
+  <script src="assets/site.js"></script>
 </body>
 </html>
