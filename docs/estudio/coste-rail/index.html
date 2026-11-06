@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/assets/favicon-32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <title>Estudio: coste del rail retail — MiCA Desk</title>
+  <meta name="description" content="Método y cálculo: 0,95 % + 1,20 % en Bit2Me Wallet frente a mediana Base ~0,0012 € (getL1Fee). Consulta 05/11/2026." />
+  <link rel="canonical" href="https://desk.rbsec.skin/estudio/coste-rail/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="MiCA Desk" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:url" content="https://desk.rbsec.skin/estudio/coste-rail/" />
+  <meta property="og:title" content="Estudio: coste del rail retail — MiCA Desk" />
+  <meta property="og:description" content="En ticket 1.000 €, el fee+spread del Wallet (~21 €) sigue siendo ~17.500 veces el all-in medido de una transferencia USDC en Base." />
+  <meta property="og:image" content="https://desk.rbsec.skin/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Estudio: coste del rail retail" />
+  <meta name="twitter:description" content="Wallet ~21 € frente a Base ~0,0012 € all-in. Método y fuentes fechadas." />
+  <meta name="twitter:image" content="https://desk.rbsec.skin/assets/og.png" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css?v=20261105i" />
+  <script src="/assets/pt-boot.js?v=20261105i"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="logo" href="/" aria-label="MiCA Desk">
+        <img src="/assets/logo-wordmark.png" alt="MiCA Desk" width="170" height="37" />
+      </a>
+      <a class="header-desk" href="/desk/">Desk</a>
+    </div>
+  </header>
+  <main class="wrap page">
+    <p class="card-meta">Estudio MiCA · consulta <time datetime="2026-11-05">05/11/2026</time></p>
+    <h1>Coste del rail: Wallet frente a Base</h1>
+    <p class="lede">
+      Estudio de origen de la pieza
+      <a href="/pieza/2026-11-05-coste-rail/">Comprar 1.000 € cuesta ~21 €; moverlo en Base, 0,001 €</a>.
+      Bit2Me, autorizada por la CNMV el 28/07/2025, es el rail retail de referencia; no es la noticia.
+    </p>
+
+    <h2>Piezas publicadas</h2>
+    <ul class="study-links">
+      <li><a href="/pieza/2026-11-05-coste-rail/">05/11/2026 — Comprar 1.000 € cuesta ~21 €; moverlo en Base, 0,001 €</a></li>
+    </ul>
+
+    <h2>Pregunta</h2>
+    <p>
+      En un ticket de 1.000 €, ¿dónde está el coste dominante del retail español:
+      la capa de compra en CASP (fee + spread) o el gas de mover crypto ya comprada en L2?
+    </p>
+
+    <h2>Método</h2>
+    <ol>
+      <li>
+        <strong>Wallet (compra).</strong> Tomamos la tarifa publicada de Bit2Me Wallet:
+        comisión de operación 0,95 % + diferencial / spread hasta 1,20 % en el tipo de cambio
+        (ejemplo oficial ≈ 2,15 % sin descuentos Space Center).
+        En 1.000 € → ≈ 21,50 €.
+      </li>
+      <li>
+        <strong>Base (movimiento).</strong> Muestreamos 25 receipts de transferencias USDC en Base
+        el 05/11/2026. Coste L2 = gas usado × effective gas price. Coste L1 = campo
+        <code>l1Fee</code> / <code>getL1Fee</code> del GasPriceOracle de OP Stack.
+        All-in = L2 + L1. Mediana ≈ 0,0012 € (ETH→EUR Coinbase spot del corte).
+      </li>
+      <li>
+        <strong>Comparación.</strong> Misma unidad (€) y mismo ticket de referencia.
+        Base no es ruta de compra: solo mide mover saldo ya on-chain.
+      </li>
+    </ol>
+
+    <h2>Cálculo (ticket 1.000 €)</h2>
+    <table class="data">
+      <thead>
+        <tr><th>Capa</th><th>Fórmula</th><th>Resultado</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bit2Me Wallet</td>
+          <td>0,95 % comisión + 1,20 % spread ≈ 2,15 %</td>
+          <td>≈ 21,50 €</td>
+        </tr>
+        <tr>
+          <td>Base USDC (mediana)</td>
+          <td>L2 gas + <code>getL1Fee</code> · 25 receipts · 05/11/2026</td>
+          <td>≈ 0,0012 €</td>
+        </tr>
+        <tr>
+          <td>Ratio</td>
+          <td>21 / 0,0012</td>
+          <td>≈ 17.500∶1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Fuentes fechadas</h2>
+    <ul>
+      <li>
+        Bit2Me Support — Wallet fees (0,95 % + spread 1,20 % / ejemplo 2,15 %) ·
+        <a href="https://support.bit2me.com/en/support/solutions/articles/35000258262" target="_blank" rel="noopener">artículo</a>
+        · consulta 05/11/2026.
+      </li>
+      <li>
+        Autorización Bit2Me (contexto, no titular) · CNMV / Cinco Días 28/07/2025 ·
+        listado ESMA 31/10/2025 · consulta desk 05/11/2026.
+      </li>
+      <li>
+        Base · receipts USDC + GasPriceOracle <code>getL1Fee</code> · corte
+        <a href="/corte/2026-11-05/">05/11/2026</a> ·
+        <code>data/gas-base-usdc-2026-11-05.json</code>.
+      </li>
+      <li>ETH-EUR · Coinbase spot en el momento del corte.</li>
+    </ul>
+
+    <h2>Conclusión del estudio</h2>
+    <p>
+      El cuello de botella del retail no es el gas de Base: es el fee + spread del Wallet
+      al entrar en crypto. Mover 1.000 € ya on-chain cuesta del orden de una milésima de euro;
+      comprarlos en Wallet cuesta del orden de veintiún euros.
+    </p>
+
+    <h2>Qué no cubre</h2>
+    <div class="warn">
+      No medimos retail español total, depósitos Bit2Me on-chain, ni Bit2Me Pro.
+      El 1,99 % de costes operativos en algunas compras con euros no entra en el L0 de 2,15 %.
+      Base no sustituye a la compra regulada.
+    </div>
+
+    <div class="actions">
+      <a class="btn" href="/pieza/2026-11-05-coste-rail/">Ver la pieza</a>
+      <a class="btn ghost" href="/metodologia/">Metodología general</a>
+      <a class="btn ghost" href="/desk/">Volver al desk</a>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="inner">
+      <nav class="footer-nav" aria-label="Secciones">
+        <a href="/sobre/">Sobre</a>
+        <a href="/metodologia/">Metodología</a>
+        <a href="/archivo/">Archivo</a>
+      </nav>
+      <p class="footer-meta"><a href="/desk/">Volver al desk</a></p>
+    </div>
+  </footer>
+<script src="/assets/site.js?v=20261105i"></script>
+</body>
+</html>

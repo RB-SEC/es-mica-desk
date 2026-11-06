@@ -1,10 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 28" role="img" aria-label="desk.rbsec.skin">
-  <title>desk.rbsec.skin</title>
-  <!-- Cubo isométrico naranja -->
-  <g transform="translate(1,2)">
-    <path d="M10 0 L20 5.5 L10 11 L0 5.5 Z" fill="#e85d04"/>
-    <path d="M0 5.5 L10 11 L10 22 L0 16.5 Z" fill="#c2410c"/>
-    <path d="M10 11 L20 5.5 L20 16.5 L10 22 Z" fill="#9a3412"/>
-  </g>
-  <text x="30" y="19" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="13" font-weight="600" fill="#111111" letter-spacing="-0.01em">desk.rbsec.skin</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 220 40" role="img" aria-label="MiCA Desk">
+  <title>MiCA Desk</title>
+  <image href="logo-icon.png" x="0" y="2" width="36" height="36" preserveAspectRatio="xMidYMid meet"/>
+  <text x="44" y="27" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="20" font-weight="700" fill="#111111" letter-spacing="-0.02em">MiCA Desk</text>
 </svg>

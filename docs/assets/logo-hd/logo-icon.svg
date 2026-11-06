@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="MiCA Desk">
+  <title>MiCA Desk icon</title>
+  <defs>
+    <linearGradient id="top" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="55%" stop-color="#e85d04"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <linearGradient id="left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#9a3412"/>
+    </linearGradient>
+    <linearGradient id="right" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c2410c"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+  </defs>
+  <!-- Transparent canvas. Soft isometric desk / arch. -->
+  <g transform="translate(256,250)">
+    <!-- left leg -->
+    <path d="M-150,-20 L-70,-60 L-70,110 L-150,150 Z" fill="url(#left)" rx="12"/>
+    <!-- right leg -->
+    <path d="M70,-60 L150,-20 L150,150 L70,110 Z" fill="url(#right)"/>
+    <!-- bridge / seat top -->
+    <path d="M-150,-20 L0,-95 L150,-20 L70,-60 L0,-20 L-70,-60 Z" fill="url(#top)"/>
+    <!-- top plate -->
+    <path d="M-118,-78 L0,-138 L118,-78 L0,-18 Z" fill="#e85d04"/>
+    <path d="M-118,-78 L0,-138 L118,-78 L0,-18 Z" fill="#fb923c" opacity="0.28"/>
+    <!-- underside shade in arch -->
+    <path d="M-70,-60 L0,-20 L70,-60 L70,110 L0,150 L-70,110 Z" fill="#7c2d12" opacity="0.35"/>
+  </g>
+</svg>

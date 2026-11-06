@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 920 200" role="img" aria-label="MiCA Desk">
+  <title>MiCA Desk</title>
+  <!-- Transparent background. Icon + wordmark lockup. -->
+  <image href="logo-icon-hd.png" x="8" y="18" width="164" height="164" preserveAspectRatio="xMidYMid meet"/>
+  <text x="196" y="128" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="92" font-weight="700" letter-spacing="-0.03em">
+    <tspan fill="#111111">MiCA</tspan><tspan dx="18" fill="#6b6b6b" font-weight="600">Desk</tspan>
+  </text>
+</svg>

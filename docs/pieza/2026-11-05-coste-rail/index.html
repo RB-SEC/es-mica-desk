@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/assets/favicon-32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <title>Comprar 1.000 € cuesta ~21 € — MiCA Desk</title>
+  <meta name="description" content="Wallet ≈21 € frente a Base ≈0,001 € all-in en ticket 1.000 €. Consulta 05/11/2026." />
+  <link rel="canonical" href="https://desk.rbsec.skin/pieza/2026-11-05-coste-rail/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="MiCA Desk" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:url" content="https://desk.rbsec.skin/pieza/2026-11-05-coste-rail/" />
+  <meta property="og:title" content="Comprar 1.000 € cuesta ~21 €; moverlo en Base, 0,001 €" />
+  <meta property="og:description" content="El cuello de botella del retail no es el gas: en 1.000 €, Wallet se come ~21 € y moverlo en Base cuesta ~0,001 €." />
+  <meta property="og:image" content="https://desk.rbsec.skin/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Comprar 1.000 € cuesta ~21 €; moverlo en Base, 0,001 €" />
+  <meta name="twitter:description" content="El cuello de botella del retail no es el gas: ~21 € de Wallet frente a ~0,001 € en Base." />
+  <meta name="twitter:image" content="https://desk.rbsec.skin/assets/og.png" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css?v=20261105i" />
+  <script src="/assets/pt-boot.js?v=20261105i"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="logo" href="/" aria-label="MiCA Desk">
+        <img src="/assets/logo-wordmark.png" alt="MiCA Desk" width="170" height="37" />
+      </a>
+      <a class="header-desk" href="/desk/">Desk</a>
+    </div>
+  </header>
+  <main class="wrap page">
+    <p class="card-meta">Consulta desk: <time datetime="2026-11-05">05/11/2026</time></p>
+    <h1>Comprar 1.000 € cuesta ~21 €; moverlo en Base, 0,001 €</h1>
+    <p class="lede">
+      El cuello de botella del retail no es el gas. Es el fee + spread del Wallet frente a
+      mover crypto ya comprada.
+    </p>
+
+    <h2>Estudio de origen</h2>
+    <p>
+      Esta pieza sale del estudio
+      <a href="/estudio/coste-rail/">Coste del rail: Wallet frente a Base</a>
+      (método, fuentes fechadas y cálculo completo).
+    </p>
+
+    <h2>Contexto</h2>
+    <p>
+      Bit2Me, autorizada por la CNMV el 28/07/2025, es el rail retail de referencia en España
+      (listado ESMA / CNMV con alta 31/10/2025; consulta desk 05/11/2026). No es una exclusiva
+      nuestra: aquí solo ancla el ticket. Medimos, en el mismo día de corte, el coste de
+      <strong>comprar</strong> 1.000 € en Wallet (0,95 % comisión + 1,20 % spread ≈ 2,15 %)
+      frente al coste de <strong>mover</strong> USDC ya on-chain en Base (L2 + <code>getL1Fee</code>).
+    </p>
+
+    <div class="chart mini-compare" aria-label="Coste real Wallet frente a Base para 1.000 euros">
+      <div class="bar-row">
+        <span>Wallet</span>
+        <div class="bar-track"><div class="bar-fill" data-width="100"></div></div>
+        <span>≈ 21 €</span>
+      </div>
+      <div class="bar-row">
+        <span>Base</span>
+        <div class="bar-track"><div class="bar-fill soft" data-width="1"></div></div>
+        <span>≈ 0,001 €</span>
+      </div>
+    </div>
+    <p class="chart-caption">
+      Wallet L0 ≈2,15 % → ≈21,50 € ·
+      <a href="https://support.bit2me.com/en/support/solutions/articles/35000258262" target="_blank" rel="noopener">Bit2Me Support</a>.
+      Base all-in mediana ≈0,0012 € (L2+L1) en 25 receipts USDC · 05/11/2026.
+      Barra Base al mínimo visible; ratio real ≈ 17.500∶1.
+    </p>
+
+    <h2>Qué hay que entender</h2>
+    <p>
+      Si entras con 1.000 € por el Wallet de referencia, dejas unos 21 € en fee + spread
+      <em>antes</em> de tocar la cadena. Una vez el saldo está en Base, transferirlo cuesta
+      del orden de una milésima de euro. El gas dejó de ser el problema caro del retail;
+      la compra en CASP sigue siéndolo.
+    </p>
+
+    <h2>Por qué importa</h2>
+    <ul>
+      <li><strong>Usuario:</strong> el ahorro grande no está en “esperar gas barato”, sino en cómo compras.</li>
+      <li><strong>Inversor / CASP:</strong> el margen visible está en la capa Wallet, no en la L2.</li>
+      <li><strong>Periodista:</strong> cifra contrastable (tarifa publicada + receipts fechados), no narrativa de “Ethereum caro”.</li>
+    </ul>
+
+    <h2>Qué no cubre</h2>
+    <div class="warn">
+      Base no es ruta de compra. No medimos retail español total, depósitos Bit2Me on-chain,
+      ni Bit2Me Pro. El 1,99 % de costes operativos en algunas compras con euros no entra
+      en el L0 de 2,15 %.
+    </div>
+
+    <div class="actions">
+      <a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdesk.rbsec.skin%2Fpieza%2F2026-11-05-coste-rail%2F" target="_blank" rel="noopener">Compartir en LinkedIn</a>
+      <a class="btn ghost" href="/estudio/coste-rail/">Estudio completo</a>
+      <a class="btn ghost" href="/corte/2026-11-05/">Tablas del corte</a>
+      <a class="btn ghost" href="/desk/">Volver al desk</a>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="inner">
+      <nav class="footer-nav" aria-label="Secciones">
+        <a href="/sobre/">Sobre</a>
+        <a href="/metodologia/">Metodología</a>
+        <a href="/archivo/">Archivo</a>
+      </nav>
+      <p class="footer-meta"><a href="/desk/">Volver al desk</a></p>
+    </div>
+  </footer>
+  <script src="/assets/site.js?v=20261105i"></script>
+</body>
+</html>

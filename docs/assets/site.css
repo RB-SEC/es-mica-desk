@@ -22,6 +22,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Portada a pantalla completa: sin scroll ni pie debajo */
+body.page-screen {
+  height: 100svh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body.page-screen main {
+  height: 100%;
+}
+
 a { color: var(--accent); text-underline-offset: 0.12em; }
 a:hover { color: var(--accent-deep); }
 
@@ -63,8 +74,27 @@ a:hover { color: var(--accent-deep); }
 
 .logo img {
   display: block;
-  height: 1.45rem;
+  height: 1.55rem;
   width: auto;
+}
+
+.hero-brand {
+  margin: 0 0 0.85rem;
+  line-height: 0;
+}
+
+.hero-brand img {
+  display: block;
+  height: clamp(2.4rem, 8vw, 3.2rem);
+  width: auto;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
 }
 
 .nav a {
@@ -75,6 +105,14 @@ a:hover { color: var(--accent-deep); }
 }
 
 .nav a:hover { text-decoration: underline; }
+
+.study-links {
+  margin: 0 0 1rem;
+  padding-left: 1.1rem;
+  color: var(--mute);
+}
+
+.study-links a { font-weight: 500; }
 
 .wrap {
   padding-top: 1.35rem;
@@ -99,6 +137,88 @@ a:hover { color: var(--accent-deep); }
   color: var(--mute);
   font-size: 0.98rem;
   max-width: 34rem;
+}
+
+.header-desk {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.header-desk:hover { text-decoration: underline; }
+
+.hero-land {
+  height: 100%;
+  min-height: 100svh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.hero-land-inner {
+  width: 100%;
+  max-width: 36rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hero-land h1 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(2.1rem, 7vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.hero-land .slogan {
+  margin: 0 auto 1.75rem;
+  max-width: 28rem;
+  font-size: clamp(1.08rem, 3.2vw, 1.28rem);
+  line-height: 1.4;
+  color: var(--mute);
+  font-weight: 500;
+}
+
+.hero-land .hero-cta {
+  font-size: 0.95rem;
+  padding: 0.7rem 1.25rem;
+}
+
+.desk-bridge {
+  margin: 0 0 1.15rem;
+  font-size: 1.02rem;
+  line-height: 1.4;
+  color: var(--ink);
+  font-weight: 500;
+  max-width: 34rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+
+.footer-nav a:hover { text-decoration: underline; }
+
+.footer-meta {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--mute);
 }
 
 .feed {
@@ -248,6 +368,24 @@ a:hover { color: var(--accent-deep); }
   font-size: 0.95rem;
 }
 
+.page blockquote {
+  margin: 0.6rem 0 1rem;
+  padding: 0.75rem 0.9rem;
+  border-left: 3px solid var(--accent);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.page h3 {
+  margin: 1.2rem 0 0.45rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
 table.data {
   width: 100%;
   border-collapse: collapse;
@@ -314,7 +452,78 @@ table.data th {
 .bar-fill.show { width: var(--w, 0%); }
 .chart-caption { font-size: 0.75rem; color: var(--mute); }
 
+/* Aceite: gota en el centro que se expande en círculo hacia todos lados */
+:root {
+  --pt-x: 50%;
+  --pt-y: 50%;
+  --pt-oil-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --pt-oil-ms: 0.48s;
+}
+
+html.pt-boot body {
+  clip-path: circle(0% at 50% 50%);
+}
+
+html.pt-entering body {
+  animation: pt-oil-spread var(--pt-oil-ms) var(--pt-oil-ease) forwards;
+}
+
+.pt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  background: var(--paper);
+  clip-path: circle(0% at 50% 50%);
+  will-change: clip-path;
+}
+
+.pt-overlay.pt-expand {
+  animation: pt-oil-spread var(--pt-oil-ms) var(--pt-oil-ease) forwards;
+}
+
+@keyframes pt-oil-spread {
+  0%   { clip-path: circle(0% at 50% 50%); }
+  12%  { clip-path: circle(6% at 50% 50%); }
+  100% { clip-path: circle(160% at 50% 50%); }
+}
+
+/* Icono Gemini: gira y desaparece ANTES del texto (pt-boot → oil) */
+.pt-spin-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.08s ease;
+}
+
+html.pt-spinning .pt-spin-wrap {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pt-logo-spin {
+  width: 72px;
+  height: auto;
+  display: block;
+  transform-style: preserve-3d;
+  animation: pt-logo-tumble 0.55s linear infinite;
+}
+
+@keyframes pt-logo-tumble {
+  0%   { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .bar-fill { transition: none; }
+  html.pt-boot body { clip-path: none; }
+  html.pt-entering body { animation: none; }
+  .pt-overlay { display: none !important; }
+  .pt-spin-wrap { display: none !important; }
 }
